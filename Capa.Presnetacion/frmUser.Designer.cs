@@ -47,6 +47,7 @@
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Guardar";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // frmUser
             // 
@@ -57,6 +58,7 @@
             this.Controls.Add(this.txtName);
             this.Name = "frmUser";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
