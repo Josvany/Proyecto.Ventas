@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capa.Datos", "Capa.Datos\Capa.Datos.csproj", "{FB64C910-EF4A-4F28-A0D7-308F41A3A040}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capa.Negocio", "Capa.Negocio\Capa.Negocio.csproj", "{9F49EDCB-1631-4BFB-B57D-34A7089F8F3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capa.Presnetacion", "Capa.Presnetacion\Capa.Presnetacion.csproj", "{C8A521A1-281C-4044-BD34-DBEDE7B4CA1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7785268D-1385-4E7B-BA4F-C0568280AD6F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DATABASE", "DATABASE", "{FA18E567-D4B1-4B84-A926-2DC4E38BCCA7}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_FARMACY", "DB_FARMACY\DB_FARMACY.sqlproj", "{83C30A1A-639F-4C20-85A0-2C49F7958001}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB64C910-EF4A-4F28-A0D7-308F41A3A040}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB64C910-EF4A-4F28-A0D7-308F41A3A040}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB64C910-EF4A-4F28-A0D7-308F41A3A040}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB64C910-EF4A-4F28-A0D7-308F41A3A040}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F49EDCB-1631-4BFB-B57D-34A7089F8F3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F49EDCB-1631-4BFB-B57D-34A7089F8F3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F49EDCB-1631-4BFB-B57D-34A7089F8F3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F49EDCB-1631-4BFB-B57D-34A7089F8F3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8A521A1-281C-4044-BD34-DBEDE7B4CA1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8A521A1-281C-4044-BD34-DBEDE7B4CA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8A521A1-281C-4044-BD34-DBEDE7B4CA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8A521A1-281C-4044-BD34-DBEDE7B4CA1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83C30A1A-639F-4C20-85A0-2C49F7958001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83C30A1A-639F-4C20-85A0-2C49F7958001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83C30A1A-639F-4C20-85A0-2C49F7958001}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{83C30A1A-639F-4C20-85A0-2C49F7958001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83C30A1A-639F-4C20-85A0-2C49F7958001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83C30A1A-639F-4C20-85A0-2C49F7958001}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{83C30A1A-639F-4C20-85A0-2C49F7958001} = {FA18E567-D4B1-4B84-A926-2DC4E38BCCA7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E0E38DB-D0D9-4D7B-8118-4A59807A00D4}
+	EndGlobalSection
+EndGlobal
