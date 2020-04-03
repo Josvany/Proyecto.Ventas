@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C8A521A1-281C-4044-BD34-DBEDE7B4CA1F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Capa.Presnetacion</RootNamespace>
-    <AssemblyName>Capa.Presnetacion</AssemblyName>
+    <RootNamespace>Capa.Presentacion</RootNamespace>
+    <AssemblyName>Capa.Presentacion</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
