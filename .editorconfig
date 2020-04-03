@@ -8,3 +8,6 @@ dotnet_code_quality_unused_parameters = all:none
 
 # IDE0044: Agregar modificador de solo lectura
 dotnet_style_readonly_field = true:none
+
+# IDE0051: Quitar miembros privados no utilizados
+dotnet_diagnostic.IDE0051.severity = none

@@ -18,11 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DATABASE", "DATABASE", "{FA
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_FARMACY", "DB_FARMACY\DB_FARMACY.sqlproj", "{83C30A1A-639F-4C20-85A0-2C49F7958001}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{6E18CCD3-687D-4096-8AEB-0C0EB9911CC5}"
-	ProjectSection(SolutionItems) = preProject
-		C:\Users\Josvany_G\Downloads\Controls.dll = C:\Users\Josvany_G\Downloads\Controls.dll
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
