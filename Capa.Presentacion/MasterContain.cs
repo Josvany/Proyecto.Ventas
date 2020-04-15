@@ -9,15 +9,13 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Capa.Presnetacion
+namespace Capa.Presentacion
 {
     public partial class MasterContain : Form
     {
         //Fields
         private IconButton currentBtn;
         private Panel leftBorderBtn;
-        private Form currentChildForm;
-
         //Constructor
         public MasterContain()
         {
@@ -44,7 +42,6 @@ namespace Capa.Presnetacion
             public static Color color4 = Color.FromArgb(95, 77, 221);
             public static Color color5 = Color.FromArgb(249, 88, 155);
             public static Color color6 = Color.FromArgb(24, 161, 251);
-
         }
 
         //Drag Form
@@ -52,7 +49,7 @@ namespace Capa.Presnetacion
         private extern static void ReleaseCapture();
 
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
         {
@@ -60,29 +57,19 @@ namespace Capa.Presnetacion
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void btnMaximize_Click(object sender, EventArgs e)
-        {
-            if (WindowState.Equals(FormWindowState.Normal))
-            {
-                WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                WindowState = FormWindowState.Normal;
-            }
-        }
 
         private void OpenForm<IsOpenForm>() where IsOpenForm : Form, new()
         {
             Form formOpen;
-            formOpen = panelDesktop.Controls.OfType<IsOpenForm>().FirstOrDefault();//Busca en la colecion el formulario
+            formOpen = panelDesktop.Controls.OfType<IsOpenForm>().FirstOrDefault();
 
             if (formOpen == null)
             {
                 formOpen = new IsOpenForm
                 {
                     TopLevel = false,
-                    //FormBorderStyle = FormBorderStyle.None,
+                    StartPosition = FormStartPosition.CenterParent,
+                    FormBorderStyle = FormBorderStyle.SizableToolWindow
                     //Dock = DockStyle.Fill
                 };
                 panelDesktop.Controls.Add(formOpen);
@@ -90,7 +77,6 @@ namespace Capa.Presnetacion
                 formOpen.Show();
                 formOpen.BringToFront();
             }
-            //si el formulario/instancia existe
             else
             {
                 formOpen.BringToFront();
@@ -108,6 +94,7 @@ namespace Capa.Presnetacion
             //currentBtn.IconColor = color;
             //currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
             //currentBtn.ImageAlign = ContentAlignment.MiddleRight;
+
             //Left border button
             leftBorderBtn.BackColor = color;
             leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
@@ -120,7 +107,7 @@ namespace Capa.Presnetacion
             if (subMenu.Visible.Equals(false))
             {
                 hideSubMenu();
-               return subMenu.Visible = true;
+                return subMenu.Visible = true;
             }
             else
             {
@@ -176,7 +163,26 @@ namespace Capa.Presnetacion
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
-            OpenForm<frmUser>();
+            OpenForm<formUser>();
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            //this.StartPosition = FormStartPosition.CenterScreen;
+            if (WindowState.Equals(FormWindowState.Normal))
+            {
+                WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+
+                WindowState = FormWindowState.Normal;
+            }
         }
     }
 }

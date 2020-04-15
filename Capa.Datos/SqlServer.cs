@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
+using System.Collections;
 
 namespace Capa.Datos
 {
@@ -17,8 +18,7 @@ namespace Capa.Datos
         * como HashTable para la clase, con el modificador Shared (compartida) que permite 
         * persistir la misma entre creaciones de objetos
         */
-        static readonly System.Collections.Hashtable ColComandos = new System.Collections.Hashtable();
-
+        static readonly Hashtable ColComandos = new Hashtable();
 
         public override sealed string CadenaConexion
         {
@@ -28,7 +28,7 @@ namespace Capa.Datos
                 {
                     if (BaseDatosValue.Length != 0 && ServidorValue.Length != 0)
                     {
-                        var sCadena = new System.Text.StringBuilder("");
+                        var sCadena = new StringBuilder("");
                         sCadena.Append("data source=<SERVIDOR>;");
                         sCadena.Append("initial catalog=<BASE>;");
                         sCadena.Append("user id=<USER>;");
@@ -44,7 +44,11 @@ namespace Capa.Datos
                     }
                     throw new Exception("No se puede establecer la cadena de conexión en la clase DatosSQLServer");
                 }
-                return null;
+                else
+                {
+                    return CadenaConexionValue;
+                }
+                
             }// end get
             set
             { 

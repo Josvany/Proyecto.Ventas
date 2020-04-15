@@ -72,6 +72,8 @@
     <Build Include="dbo\Tables\TBL_TYPE_PAYMENT.sql" />
     <Build Include="dbo\Tables\TBL_BILL.sql" />
     <Build Include="dbo\Tables\TBL_DETAILS_BILL.sql" />
-    <Build Include="dbo\Stored Procedures\INSERT_ROLE.sql" />
+    <Build Include="dbo\Stored Procedures\SP_IM_USER.sql" />
+    <Build Include="dbo\Stored Procedures\SP_GET_USER.sql" />
+    <Build Include="dbo\Stored Procedures\GET_ROLES.sql" />
   </ItemGroup>
 </Project>

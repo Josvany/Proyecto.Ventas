@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsRole.cs" />
+    <Compile Include="clsCategory.cs" />
+    <Compile Include="clsUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UtilsRespository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Capa.Datos\Capa.Datos.csproj">

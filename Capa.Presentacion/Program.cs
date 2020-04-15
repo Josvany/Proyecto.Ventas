@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Capa.Presnetacion
+namespace Capa.Presentacion
 {
     static class Program
     {
