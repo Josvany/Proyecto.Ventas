@@ -13,7 +13,7 @@ namespace Capa.Presentacion
         private clsUser _clsUser = new clsUser();
         private Encriptacion encriptacion = new Encriptacion();
         private UtilsRespository utilsRespository = new UtilsRespository();
-        Guid localUserIntId = Guid.Empty;
+        Guid currenUserIntId = Guid.Empty;
         int count = 0;
         private bool activateSearch = true;
         public formUser()
@@ -82,13 +82,13 @@ namespace Capa.Presentacion
                     }
                 }
 
-                if (localUserIntId == Guid.Empty)
+                if (currenUserIntId == Guid.Empty)
                 {
                     _clsUser.userIntIdValue = Guid.NewGuid();
                 }
                 else
                 {
-                    _clsUser.userIntIdValue = localUserIntId;
+                    _clsUser.userIntIdValue = currenUserIntId;
                 }
                 _clsUser.userNameValue = textNombre.Text;
                 _clsUser.userLoginValue = textUser.Text;
@@ -96,10 +96,19 @@ namespace Capa.Presentacion
                 _clsUser.rolIntIdValue = Guid.Parse(cmbRol.SelectedValue.ToString());
                 _clsUser.userStatusValue = true;
                 _clsUser.Insert(_clsUser);
-                localUserIntId = Guid.Empty;
+                currenUserIntId = Guid.Empty;
                 disableEnableControls(true);
                 loadAllUser();
-                MessageBox.Show("Usuario ingresado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                if (currenUserIntId != Guid.Empty)
+                {
+                    MessageBox.Show("Usuario actualizado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show("Usuario ingresado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
                 activateSearch = true;
             }
             catch (Exception ex)
@@ -134,17 +143,6 @@ namespace Capa.Presentacion
             textUser.BackColor = Color.White;
         }
 
-        private void btnNew_Click(object sender, EventArgs e)
-        {
-            activateSearch = false;
-            disableEnableControls(false);
-            textUser.Focus();
-            if (dgAllUser.Rows.Count.Equals(0))
-            {
-                loadAllUser();
-            }
-        }
-
         private void clearControls()
         {
             textNombre.Text = string.Empty;
@@ -157,14 +155,26 @@ namespace Capa.Presentacion
             }
         }
 
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            activateSearch = false;
+            disableEnableControls(false);
+            textUser.Focus();
+            if (dgAllUser.Rows.Count.Equals(0))
+            {
+                loadAllUser();
+            }
+        }
         private void dgAllUser_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                disableEnableControls(true);
+                activateSearch = false;
+                disableEnableControls(false);
                 int currentRow = dgAllUser.CurrentRow.Index;
-                textNombre.Text = dgAllUser.Rows[currentRow].Cells[1].EditedFormattedValue.ToString();
-                textUser.Text = dgAllUser.Rows[currentRow].Cells[2].EditedFormattedValue.ToString();
+                currenUserIntId = Guid.Parse(dgAllUser.Rows[currentRow].Cells["USE_INT_ID"].EditedFormattedValue.ToString());
+                textNombre.Text = dgAllUser.Rows[currentRow].Cells["Nombre"].EditedFormattedValue.ToString();
+                textUser.Text = dgAllUser.Rows[currentRow].Cells["Usuario"].EditedFormattedValue.ToString();
             }
             catch
             {
@@ -252,7 +262,6 @@ namespace Capa.Presentacion
                     {
                         loadAllUser();
                     }
-                    
                 }
             }
         }

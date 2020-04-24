@@ -184,5 +184,15 @@ namespace Capa.Presentacion
                 WindowState = FormWindowState.Normal;
             }
         }
+
+        private void btnCategory_Click(object sender, EventArgs e)
+        {
+            OpenForm<formCategory>();
+        }
+
+        private void btnProduct_Click(object sender, EventArgs e)
+        {
+            OpenForm<formProduct>();
+        }
     }
 }

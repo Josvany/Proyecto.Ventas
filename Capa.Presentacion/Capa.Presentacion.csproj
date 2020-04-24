@@ -81,6 +81,9 @@
     <EmbeddedResource Include="formCategory.resx">
       <DependentUpon>formCategory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formProduct.resx">
+      <DependentUpon>formProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formUser.resx">
       <DependentUpon>formUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,6 +122,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Common\Bunifu_UI_v1.5.3.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="COMSVCSLib">
+      <Guid>{2A005C00-A5DE-11CF-9E66-00AA00A3F464}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="igfxCUIServiceLib">
+      <Guid>{99174E61-CDBC-469F-AA7A-E3A45C2572C7}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

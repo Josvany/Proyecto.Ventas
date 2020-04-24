@@ -1,6 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[SP_IM_USER] (
    @useIntId   UNIQUEIDENTIFIER,
-   @useInfIntId UNIQUEIDENTIFIER,
    @useName  VARCHAR(50),
    @useLogin VARCHAR(100),
    @usePass VARCHAR(300),

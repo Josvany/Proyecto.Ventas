@@ -330,7 +330,7 @@ namespace Capa.Datos
         protected bool EnTransaccion;
 
         //Comienza una Transacción en la base en uso. 
-        public void IniciarTransaccion()
+        public void BeginTransaction()
         {
             try
             {
@@ -343,7 +343,7 @@ namespace Capa.Datos
 
 
         //Confirma la transacción activa. 
-        public void TerminarTransaccion()
+        public void CommitTransaction()
         {
             try
             { MTransaccion.Commit(); }
@@ -356,7 +356,7 @@ namespace Capa.Datos
 
 
         //Cancela la transacción activa.
-        public void AbortarTransaccion()
+        public void RollBackTransaction()
         {
             try
             { MTransaccion.Rollback(); }

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterContain));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnExist = new FontAwesome.Sharp.IconButton();
             this.panelSubAjust = new System.Windows.Forms.Panel();
             this.iconButton3 = new FontAwesome.Sharp.IconButton();
             this.bntCash = new FontAwesome.Sharp.IconButton();
@@ -72,6 +73,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panelMenu.AutoScroll = true;
             this.panelMenu.BackColor = System.Drawing.SystemColors.Menu;
+            this.panelMenu.Controls.Add(this.btnExist);
             this.panelMenu.Controls.Add(this.panelSubAjust);
             this.panelMenu.Controls.Add(this.btnAjust);
             this.panelMenu.Controls.Add(this.panelSubReport);
@@ -84,15 +86,38 @@
             this.panelMenu.Size = new System.Drawing.Size(220, 542);
             this.panelMenu.TabIndex = 0;
             // 
+            // btnExist
+            // 
+            this.btnExist.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnExist.FlatAppearance.BorderSize = 0;
+            this.btnExist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExist.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.btnExist.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExist.ForeColor = System.Drawing.Color.Black;
+            this.btnExist.IconChar = FontAwesome.Sharp.IconChar.PowerOff;
+            this.btnExist.IconColor = System.Drawing.Color.Red;
+            this.btnExist.IconSize = 32;
+            this.btnExist.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExist.Location = new System.Drawing.Point(0, 664);
+            this.btnExist.Name = "btnExist";
+            this.btnExist.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            this.btnExist.Rotation = 0D;
+            this.btnExist.Size = new System.Drawing.Size(203, 40);
+            this.btnExist.TabIndex = 7;
+            this.btnExist.Text = "Salir";
+            this.btnExist.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExist.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExist.UseVisualStyleBackColor = true;
+            // 
             // panelSubAjust
             // 
             this.panelSubAjust.Controls.Add(this.iconButton3);
             this.panelSubAjust.Controls.Add(this.bntCash);
             this.panelSubAjust.Controls.Add(this.btnUsers);
             this.panelSubAjust.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubAjust.Location = new System.Drawing.Point(0, 586);
+            this.panelSubAjust.Location = new System.Drawing.Point(0, 580);
             this.panelSubAjust.Name = "panelSubAjust";
-            this.panelSubAjust.Size = new System.Drawing.Size(203, 121);
+            this.panelSubAjust.Size = new System.Drawing.Size(203, 84);
             this.panelSubAjust.TabIndex = 6;
             // 
             // iconButton3
@@ -177,7 +202,7 @@
             this.btnAjust.IconColor = System.Drawing.Color.DarkBlue;
             this.btnAjust.IconSize = 32;
             this.btnAjust.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAjust.Location = new System.Drawing.Point(0, 546);
+            this.btnAjust.Location = new System.Drawing.Point(0, 540);
             this.btnAjust.Name = "btnAjust";
             this.btnAjust.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.btnAjust.Rotation = 0D;
@@ -191,13 +216,14 @@
             // 
             // panelSubReport
             // 
+            this.panelSubReport.AutoSize = true;
             this.panelSubReport.Controls.Add(this.iconButton2);
             this.panelSubReport.Controls.Add(this.btnBox);
             this.panelSubReport.Controls.Add(this.btnReportSales);
             this.panelSubReport.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubReport.Location = new System.Drawing.Point(0, 425);
+            this.panelSubReport.Location = new System.Drawing.Point(0, 420);
             this.panelSubReport.Name = "panelSubReport";
-            this.panelSubReport.Size = new System.Drawing.Size(203, 121);
+            this.panelSubReport.Size = new System.Drawing.Size(203, 120);
             this.panelSubReport.TabIndex = 4;
             // 
             // iconButton2
@@ -281,7 +307,7 @@
             this.btnReports.IconColor = System.Drawing.Color.DarkBlue;
             this.btnReports.IconSize = 32;
             this.btnReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReports.Location = new System.Drawing.Point(0, 385);
+            this.btnReports.Location = new System.Drawing.Point(0, 380);
             this.btnReports.Name = "btnReports";
             this.btnReports.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.btnReports.Rotation = 0D;
@@ -295,6 +321,7 @@
             // 
             // panelSubMenuGeneral
             // 
+            this.panelSubMenuGeneral.AutoSize = true;
             this.panelSubMenuGeneral.Controls.Add(this.iconButton1);
             this.panelSubMenuGeneral.Controls.Add(this.btnCategory);
             this.panelSubMenuGeneral.Controls.Add(this.btnClient);
@@ -303,7 +330,7 @@
             this.panelSubMenuGeneral.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSubMenuGeneral.Location = new System.Drawing.Point(0, 180);
             this.panelSubMenuGeneral.Name = "panelSubMenuGeneral";
-            this.panelSubMenuGeneral.Size = new System.Drawing.Size(203, 205);
+            this.panelSubMenuGeneral.Size = new System.Drawing.Size(203, 200);
             this.panelSubMenuGeneral.TabIndex = 2;
             // 
             // iconButton1
@@ -328,6 +355,7 @@
             this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Visible = false;
             // 
             // btnCategory
             // 
@@ -351,6 +379,7 @@
             this.btnCategory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCategory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCategory.UseVisualStyleBackColor = true;
+            this.btnCategory.Click += new System.EventHandler(this.btnCategory_Click);
             // 
             // btnClient
             // 
@@ -374,6 +403,7 @@
             this.btnClient.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClient.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClient.UseVisualStyleBackColor = true;
+            this.btnClient.Visible = false;
             // 
             // btnProduct
             // 
@@ -397,6 +427,7 @@
             this.btnProduct.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProduct.UseVisualStyleBackColor = true;
+            this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
             // 
             // btnSales
             // 
@@ -545,7 +576,9 @@
             this.Name = "MasterContain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MasterContain";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelMenu.ResumeLayout(false);
+            this.panelMenu.PerformLayout();
             this.panelSubAjust.ResumeLayout(false);
             this.panelSubReport.ResumeLayout(false);
             this.panelSubMenuGeneral.ResumeLayout(false);
@@ -586,5 +619,6 @@
         private System.Windows.Forms.PictureBox btnExit;
         private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconButton btnCategory;
+        private FontAwesome.Sharp.IconButton btnExist;
     }
 }
