@@ -32,7 +32,7 @@
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnExist = new FontAwesome.Sharp.IconButton();
             this.panelSubAjust = new System.Windows.Forms.Panel();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
+            this.btnOpenAgencyBox = new FontAwesome.Sharp.IconButton();
             this.bntCash = new FontAwesome.Sharp.IconButton();
             this.btnUsers = new FontAwesome.Sharp.IconButton();
             this.btnAjust = new FontAwesome.Sharp.IconButton();
@@ -98,50 +98,53 @@
             this.btnExist.IconColor = System.Drawing.Color.Red;
             this.btnExist.IconSize = 32;
             this.btnExist.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExist.Location = new System.Drawing.Point(0, 664);
+            this.btnExist.Location = new System.Drawing.Point(0, 700);
             this.btnExist.Name = "btnExist";
             this.btnExist.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.btnExist.Rotation = 0D;
             this.btnExist.Size = new System.Drawing.Size(203, 40);
             this.btnExist.TabIndex = 7;
-            this.btnExist.Text = "Salir";
+            this.btnExist.Text = "Cerrar Session";
             this.btnExist.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExist.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExist.UseVisualStyleBackColor = true;
+            this.btnExist.Click += new System.EventHandler(this.btnExist_Click);
             // 
             // panelSubAjust
             // 
-            this.panelSubAjust.Controls.Add(this.iconButton3);
+            this.panelSubAjust.AutoSize = true;
+            this.panelSubAjust.Controls.Add(this.btnOpenAgencyBox);
             this.panelSubAjust.Controls.Add(this.bntCash);
             this.panelSubAjust.Controls.Add(this.btnUsers);
             this.panelSubAjust.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSubAjust.Location = new System.Drawing.Point(0, 580);
             this.panelSubAjust.Name = "panelSubAjust";
-            this.panelSubAjust.Size = new System.Drawing.Size(203, 84);
+            this.panelSubAjust.Size = new System.Drawing.Size(203, 120);
             this.panelSubAjust.TabIndex = 6;
             // 
-            // iconButton3
+            // btnOpenAgencyBox
             // 
-            this.iconButton3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton3.FlatAppearance.BorderSize = 0;
-            this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton3.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.iconButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton3.ForeColor = System.Drawing.Color.Black;
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.ClipboardList;
-            this.iconButton3.IconColor = System.Drawing.Color.DodgerBlue;
-            this.iconButton3.IconSize = 32;
-            this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.Location = new System.Drawing.Point(0, 80);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
-            this.iconButton3.Rotation = 0D;
-            this.iconButton3.Size = new System.Drawing.Size(203, 40);
-            this.iconButton3.TabIndex = 4;
-            this.iconButton3.Text = "Kardex";
-            this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton3.UseVisualStyleBackColor = true;
+            this.btnOpenAgencyBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnOpenAgencyBox.FlatAppearance.BorderSize = 0;
+            this.btnOpenAgencyBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenAgencyBox.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.btnOpenAgencyBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenAgencyBox.ForeColor = System.Drawing.Color.Black;
+            this.btnOpenAgencyBox.IconChar = FontAwesome.Sharp.IconChar.ClipboardList;
+            this.btnOpenAgencyBox.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btnOpenAgencyBox.IconSize = 32;
+            this.btnOpenAgencyBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOpenAgencyBox.Location = new System.Drawing.Point(0, 80);
+            this.btnOpenAgencyBox.Name = "btnOpenAgencyBox";
+            this.btnOpenAgencyBox.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
+            this.btnOpenAgencyBox.Rotation = 0D;
+            this.btnOpenAgencyBox.Size = new System.Drawing.Size(203, 40);
+            this.btnOpenAgencyBox.TabIndex = 4;
+            this.btnOpenAgencyBox.Text = "Abrir Caja";
+            this.btnOpenAgencyBox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOpenAgencyBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOpenAgencyBox.UseVisualStyleBackColor = true;
+            this.btnOpenAgencyBox.Click += new System.EventHandler(this.btnOpenAgencyBox_Click);
             // 
             // bntCash
             // 
@@ -161,10 +164,11 @@
             this.bntCash.Rotation = 0D;
             this.bntCash.Size = new System.Drawing.Size(203, 40);
             this.bntCash.TabIndex = 3;
-            this.bntCash.Text = "Caja";
+            this.bntCash.Text = "Cajas";
             this.bntCash.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bntCash.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.bntCash.UseVisualStyleBackColor = true;
+            this.bntCash.Click += new System.EventHandler(this.bntCash_Click);
             // 
             // btnUsers
             // 
@@ -609,7 +613,7 @@
         private FontAwesome.Sharp.IconButton btnReportSales;
         private FontAwesome.Sharp.IconButton btnReports;
         private System.Windows.Forms.Panel panelSubAjust;
-        private FontAwesome.Sharp.IconButton iconButton3;
+        private FontAwesome.Sharp.IconButton btnOpenAgencyBox;
         private FontAwesome.Sharp.IconButton bntCash;
         private FontAwesome.Sharp.IconButton btnUsers;
         private FontAwesome.Sharp.IconButton btnAjust;

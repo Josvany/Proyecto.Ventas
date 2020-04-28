@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Forms;
 using Capa.Datos;
 using Capa.Datos.ORM;
 
@@ -19,12 +20,7 @@ namespace Capa.Datos.ORM
             return Conexion.GDatos.TraerDataTable(procedureName);
         }
 
-        public DataTable GetData(string procedureName, Guid valueSearch)
-        {
-            return Conexion.GDatos.TraerDataTable(procedureName, valueSearch);
-        }
-
-        public object GetData(string procedureName, string columnameFilterValue, string columReturnValue ,object valueToFilter)
+        public object GetData(string procedureName, string columnameFilterValue, string columReturnValue, object valueToFilter)
         {
             DataTable dtGetData = new DataTable();
             object valueReturn = new object();
@@ -52,10 +48,22 @@ namespace Capa.Datos.ORM
 
             foreach (DataRow item in dtData.Rows)
             {
-                valueReturn.Add(item["Nombre"].ToString(), Guid.Parse(item["CAT_INT_ID"].ToString()));
+                valueReturn.Add(item[1].ToString(), Guid.Parse(item[0].ToString()));
             }
 
             return valueReturn;
+        }
+
+        public void blockLeter(KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar) || Char.IsControl(e.KeyChar) || Char.IsPunctuation(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
 
     }

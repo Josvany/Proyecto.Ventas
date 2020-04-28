@@ -187,7 +187,7 @@ namespace Capa.Presentacion
                 _clsCategory.categoryCode = textSystemName.Text;
                 _clsCategory.categoryStatus = ckbStatus.Checked;
                 _clsCategory.saveData(_clsCategory);
-                currentCategoryIntId = Guid.Empty;
+                
                 disableEnableControls(true);
                 getAllCategory();
                 if (currentCategoryIntId != Guid.Empty)
@@ -198,7 +198,7 @@ namespace Capa.Presentacion
                 {
                     MessageBox.Show("Categoria ingresada correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
+                currentCategoryIntId = Guid.Empty;
                 activateSearch = true;
             }
             catch (Exception ex)
@@ -218,8 +218,9 @@ namespace Capa.Presentacion
                 textSystemName.Text = dgAllCategory.Rows[currentRow].Cells[2].EditedFormattedValue.ToString();
                 ckbStatus.Checked = (bool)dgAllCategory.Rows[currentRow].Cells[3].EditedFormattedValue;
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show(ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void textNombre_TextChanged(object sender, EventArgs e)

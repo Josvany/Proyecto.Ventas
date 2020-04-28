@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using Capa.Datos;
-using Capa.Datos.ORM;
 
 namespace Capa.Datos.ORM
 {
@@ -17,6 +16,7 @@ namespace Capa.Datos.ORM
         public decimal prodPriceBuy { get; set; }
         public decimal prodPriceSales { get; set; }
         public DateTime proDate { get; set; }
+        public int? proIva { get; set; }
         public int proStock { get; set; }
         public int proMinimalStock { get; set; }
         public bool proStatus { get; set; }
@@ -39,14 +39,18 @@ namespace Capa.Datos.ORM
                 Conexion.GDatos.Ejecutar("SP_IM_PRODUCT", clsProduct.prodIntId, valueCategories,
                                                           clsProduct.proName, clsProduct.prodCode,
                                                           clsProduct.prodPriceSales, clsProduct.proMinimalStock,
-                                                          clsProduct.proStatus);
+                                                          clsProduct.proStatus, clsProduct.proIva);
 
 
                 Guid typKardex = Guid.Parse(new UtilsRespository().GetData("SP_GET_TYPE_KARDEX", "TYP_KAR_NAME", "TYP_KAR_ID", "Entrada").ToString());
 
-                if (updateKarIntId != null)
+                if (updateKarIntId != null && updateKarIntId != Guid.Empty)
                 {
-
+                    Conexion.GDatos.Ejecutar("SP_IM_KADEX", updateKarIntId, clsProduct.prodIntId, typKardex,
+                                                                            "Ingreso de producto " + clsProduct.proName,
+                                                                            DateTime.Now, clsProduct.prodPriceBuy,
+                                                                            clsProduct.proStock, clsProduct.proStock,
+                                                                            clsProduct.proDate, DBNull.Value);
                 }
                 else
                 {

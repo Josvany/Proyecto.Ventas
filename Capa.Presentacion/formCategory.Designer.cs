@@ -195,9 +195,9 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(18, 77);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 619;
-            this.label2.Text = "Usuario:";
+            this.label2.Text = "Estado";
             // 
             // ckbStatus
             // 

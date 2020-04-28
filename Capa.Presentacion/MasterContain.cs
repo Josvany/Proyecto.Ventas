@@ -32,7 +32,6 @@ namespace Capa.Presentacion
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
-
         //Structs
         private struct RGBColors
         {
@@ -43,7 +42,6 @@ namespace Capa.Presentacion
             public static Color color5 = Color.FromArgb(249, 88, 155);
             public static Color color6 = Color.FromArgb(24, 161, 251);
         }
-
         //Drag Form
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -56,8 +54,6 @@ namespace Capa.Presentacion
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-
-
         private void OpenForm<IsOpenForm>() where IsOpenForm : Form, new()
         {
             Form formOpen;
@@ -82,8 +78,6 @@ namespace Capa.Presentacion
                 formOpen.BringToFront();
             }
         }
-
-
         private void activateButton(object senderBtn, Color color)
         {
             //Button
@@ -101,7 +95,6 @@ namespace Capa.Presentacion
             leftBorderBtn.Visible = true;
             leftBorderBtn.BringToFront();
         }
-
         private bool showSubMenu(Panel subMenu)
         {
             if (subMenu.Visible.Equals(false))
@@ -120,7 +113,6 @@ namespace Capa.Presentacion
             panelSubReport.Visible = false;
             panelSubAjust.Visible = false;
         }
-
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -136,7 +128,6 @@ namespace Capa.Presentacion
                 activateButton(sender, Color.Transparent);
             }
         }
-
         private void btnReports_Click(object sender, EventArgs e)
         {
             if (showSubMenu(panelSubReport))
@@ -170,7 +161,6 @@ namespace Capa.Presentacion
         {
             WindowState = FormWindowState.Minimized;
         }
-
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
             //this.StartPosition = FormStartPosition.CenterScreen;
@@ -180,19 +170,32 @@ namespace Capa.Presentacion
             }
             else
             {
-
                 WindowState = FormWindowState.Normal;
             }
         }
-
         private void btnCategory_Click(object sender, EventArgs e)
         {
             OpenForm<formCategory>();
         }
-
         private void btnProduct_Click(object sender, EventArgs e)
         {
             OpenForm<formProduct>();
+        }
+        private void btnExist_Click(object sender, EventArgs e)
+        {
+            formUserLogin masterContain = new formUserLogin();
+            masterContain.Show();
+            this.Hide();
+        }
+
+        private void bntCash_Click(object sender, EventArgs e)
+        {
+            OpenForm<formBoxConfig>();
+        }
+
+        private void btnOpenAgencyBox_Click(object sender, EventArgs e)
+        {
+            OpenForm<formOpenBox>();
         }
     }
 }

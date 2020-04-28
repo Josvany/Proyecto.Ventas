@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Toolbar Downloads Folder.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -52,11 +55,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\NumberRound\DecimalRounding.cs" />
+    <Compile Include="Common\NumberRound\INumberRounding.cs" />
+    <Compile Include="Common\NumberRound\NumberRoundigBase.cs" />
+    <Compile Include="Common\NumberRound\NumberRounding.cs" />
+    <Compile Include="Common\NumberRound\NumberRoundingConfiguration.cs" />
+    <Compile Include="Common\NumberRound\RoundingMode.cs" />
+    <Compile Include="Common\NumberRound\RoundNameAttribute.cs" />
+    <Compile Include="formBoxConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formBoxConfig.Designer.cs">
+      <DependentUpon>formBoxConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="formCategory.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formCategory.Designer.cs">
       <DependentUpon>formCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formOpenBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formOpenBox.Designer.cs">
+      <DependentUpon>formOpenBox.cs</DependentUpon>
     </Compile>
     <Compile Include="formProduct.cs">
       <SubType>Form</SubType>
@@ -64,11 +86,23 @@
     <Compile Include="formProduct.Designer.cs">
       <DependentUpon>formProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSales.Designer.cs">
+      <DependentUpon>FormSales.cs</DependentUpon>
+    </Compile>
     <Compile Include="formUser.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formUser.Designer.cs">
       <DependentUpon>formUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formUserLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formUserLogin.Designer.cs">
+      <DependentUpon>formUserLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="MasterContain.cs">
       <SubType>Form</SubType>
@@ -78,14 +112,26 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="formBoxConfig.resx">
+      <DependentUpon>formBoxConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formCategory.resx">
       <DependentUpon>formCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formOpenBox.resx">
+      <DependentUpon>formOpenBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formProduct.resx">
       <DependentUpon>formProduct.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSales.resx">
+      <DependentUpon>FormSales.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formUser.resx">
       <DependentUpon>formUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formUserLogin.resx">
+      <DependentUpon>formUserLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterContain.resx">
       <DependentUpon>MasterContain.cs</DependentUpon>
@@ -122,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Common\Bunifu_UI_v1.5.3.dll" />
+    <Content Include="Toolbar Downloads Folder.ico" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="COMSVCSLib">
@@ -143,5 +190,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formProduct));
             this.btnSearch = new FontAwesome.Sharp.IconPictureBox();
             this.textMinimalStock = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -57,17 +58,21 @@
             this.ckbStatus = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.TimeSumulate = new System.Windows.Forms.Timer(this.components);
-            this.panelSourseProducts = new System.Windows.Forms.Panel();
-            this.dgProductExist = new System.Windows.Forms.DataGridView();
-            this.btnAcept = new FontAwesome.Sharp.IconButton();
             this.btnClean = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.dtExpirationProduct = new System.Windows.Forms.DateTimePicker();
+            this.btnEdit = new FontAwesome.Sharp.IconButton();
+            this.dgProductExist = new System.Windows.Forms.DataGridView();
+            this.btnAcepted = new FontAwesome.Sharp.IconButton();
+            this.panelSourseProducts = new System.Windows.Forms.Panel();
+            this.textIva = new System.Windows.Forms.TextBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAllProduct)).BeginInit();
-            this.panelSourseProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductExist)).BeginInit();
+            this.panelSourseProducts.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSearch
@@ -96,6 +101,7 @@
             this.textMinimalStock.Size = new System.Drawing.Size(237, 13);
             this.textMinimalStock.TabIndex = 643;
             this.textMinimalStock.Tag = "";
+            this.textMinimalStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textMinimalStock_KeyPress);
             // 
             // panel3
             // 
@@ -122,7 +128,7 @@
             this.btnCancel.IconChar = FontAwesome.Sharp.IconChar.Ban;
             this.btnCancel.IconColor = System.Drawing.Color.Red;
             this.btnCancel.IconSize = 19;
-            this.btnCancel.Location = new System.Drawing.Point(398, 318);
+            this.btnCancel.Location = new System.Drawing.Point(373, 318);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Rotation = 0D;
             this.btnCancel.Size = new System.Drawing.Size(76, 24);
@@ -138,7 +144,7 @@
             this.btnNew.IconChar = FontAwesome.Sharp.IconChar.Plus;
             this.btnNew.IconColor = System.Drawing.Color.Green;
             this.btnNew.IconSize = 20;
-            this.btnNew.Location = new System.Drawing.Point(234, 318);
+            this.btnNew.Location = new System.Drawing.Point(209, 318);
             this.btnNew.Name = "btnNew";
             this.btnNew.Rotation = 0D;
             this.btnNew.Size = new System.Drawing.Size(76, 24);
@@ -154,7 +160,7 @@
             this.btnAdd.IconChar = FontAwesome.Sharp.IconChar.Save;
             this.btnAdd.IconColor = System.Drawing.Color.Blue;
             this.btnAdd.IconSize = 20;
-            this.btnAdd.Location = new System.Drawing.Point(316, 318);
+            this.btnAdd.Location = new System.Drawing.Point(291, 318);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Rotation = 0D;
             this.btnAdd.Size = new System.Drawing.Size(76, 24);
@@ -168,14 +174,14 @@
             // 
             this.dgAllProduct.AllowUserToAddRows = false;
             this.dgAllProduct.AllowUserToOrderColumns = true;
-            this.dgAllProduct.Location = new System.Drawing.Point(142, 155);
+            this.dgAllProduct.Location = new System.Drawing.Point(70, 155);
             this.dgAllProduct.MultiSelect = false;
             this.dgAllProduct.Name = "dgAllProduct";
             this.dgAllProduct.ReadOnly = true;
             this.dgAllProduct.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgAllProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgAllProduct.ShowRowErrors = false;
-            this.dgAllProduct.Size = new System.Drawing.Size(545, 157);
+            this.dgAllProduct.Size = new System.Drawing.Size(642, 157);
             this.dgAllProduct.TabIndex = 639;
             this.dgAllProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgAllProduct_CellDoubleClick);
             // 
@@ -208,6 +214,7 @@
             this.textPriceBuy.Size = new System.Drawing.Size(237, 13);
             this.textPriceBuy.TabIndex = 631;
             this.textPriceBuy.Tag = "";
+            this.textPriceBuy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textPriceBuy_KeyPress);
             // 
             // panel2
             // 
@@ -266,6 +273,7 @@
             this.textStock.Size = new System.Drawing.Size(237, 13);
             this.textStock.TabIndex = 656;
             this.textStock.Tag = "";
+            this.textStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textStock_KeyPress);
             // 
             // panel4
             // 
@@ -295,6 +303,7 @@
             this.textPriceSales.Size = new System.Drawing.Size(237, 13);
             this.textPriceSales.TabIndex = 650;
             this.textPriceSales.Tag = "";
+            this.textPriceSales.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textPriceSales_KeyPress);
             // 
             // panel5
             // 
@@ -331,6 +340,8 @@
             this.textCode.Name = "textCode";
             this.textCode.Size = new System.Drawing.Size(237, 13);
             this.textCode.TabIndex = 649;
+            this.textCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textCode_KeyDown);
+            this.textCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textCode_KeyPress);
             // 
             // label7
             // 
@@ -348,7 +359,7 @@
             this.ckbStatus.AutoSize = true;
             this.ckbStatus.Checked = true;
             this.ckbStatus.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbStatus.Location = new System.Drawing.Point(518, 110);
+            this.ckbStatus.Location = new System.Drawing.Point(519, 131);
             this.ckbStatus.Name = "ckbStatus";
             this.ckbStatus.Size = new System.Drawing.Size(15, 14);
             this.ckbStatus.TabIndex = 660;
@@ -359,7 +370,7 @@
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(437, 111);
+            this.label9.Location = new System.Drawing.Point(438, 132);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(40, 13);
             this.label9.TabIndex = 659;
@@ -369,53 +380,13 @@
             // 
             this.TimeSumulate.Tick += new System.EventHandler(this.TimeSumulate_Tick);
             // 
-            // panelSourseProducts
-            // 
-            this.panelSourseProducts.Controls.Add(this.dgProductExist);
-            this.panelSourseProducts.Controls.Add(this.btnAcept);
-            this.panelSourseProducts.Location = new System.Drawing.Point(30, 12);
-            this.panelSourseProducts.Name = "panelSourseProducts";
-            this.panelSourseProducts.Size = new System.Drawing.Size(748, 300);
-            this.panelSourseProducts.TabIndex = 661;
-            this.panelSourseProducts.Visible = false;
-            // 
-            // dgProductExist
-            // 
-            this.dgProductExist.AllowUserToAddRows = false;
-            this.dgProductExist.AllowUserToOrderColumns = true;
-            this.dgProductExist.Location = new System.Drawing.Point(112, 67);
-            this.dgProductExist.MultiSelect = false;
-            this.dgProductExist.Name = "dgProductExist";
-            this.dgProductExist.ReadOnly = true;
-            this.dgProductExist.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dgProductExist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgProductExist.ShowRowErrors = false;
-            this.dgProductExist.Size = new System.Drawing.Size(539, 157);
-            this.dgProductExist.TabIndex = 642;
-            this.dgProductExist.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductExist_CellClick);
-            // 
-            // btnAcept
-            // 
-            this.btnAcept.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.btnAcept.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.btnAcept.IconColor = System.Drawing.Color.Blue;
-            this.btnAcept.IconSize = 20;
-            this.btnAcept.Location = new System.Drawing.Point(336, 251);
-            this.btnAcept.Name = "btnAcept";
-            this.btnAcept.Rotation = 0D;
-            this.btnAcept.Size = new System.Drawing.Size(76, 24);
-            this.btnAcept.TabIndex = 641;
-            this.btnAcept.Text = "Guardar";
-            this.btnAcept.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAcept.UseVisualStyleBackColor = true;
-            // 
             // btnClean
             // 
             this.btnClean.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
             this.btnClean.IconChar = FontAwesome.Sharp.IconChar.Brush;
-            this.btnClean.IconColor = System.Drawing.Color.DarkGreen;
+            this.btnClean.IconColor = System.Drawing.Color.Black;
             this.btnClean.IconSize = 19;
-            this.btnClean.Location = new System.Drawing.Point(480, 318);
+            this.btnClean.Location = new System.Drawing.Point(537, 318);
             this.btnClean.Name = "btnClean";
             this.btnClean.Rotation = 0D;
             this.btnClean.Size = new System.Drawing.Size(76, 24);
@@ -457,13 +428,109 @@
             this.dtExpirationProduct.TabIndex = 663;
             this.dtExpirationProduct.Value = new System.DateTime(2020, 4, 21, 0, 0, 0, 0);
             // 
+            // btnEdit
+            // 
+            this.btnEdit.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.btnEdit.IconChar = FontAwesome.Sharp.IconChar.Pen;
+            this.btnEdit.IconColor = System.Drawing.Color.DarkGreen;
+            this.btnEdit.IconSize = 19;
+            this.btnEdit.Location = new System.Drawing.Point(455, 318);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Rotation = 0D;
+            this.btnEdit.Size = new System.Drawing.Size(76, 24);
+            this.btnEdit.TabIndex = 665;
+            this.btnEdit.Text = "Editar";
+            this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Visible = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // dgProductExist
+            // 
+            this.dgProductExist.AllowUserToAddRows = false;
+            this.dgProductExist.AllowUserToOrderColumns = true;
+            this.dgProductExist.Location = new System.Drawing.Point(54, 37);
+            this.dgProductExist.MultiSelect = false;
+            this.dgProductExist.Name = "dgProductExist";
+            this.dgProductExist.ReadOnly = true;
+            this.dgProductExist.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgProductExist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgProductExist.ShowRowErrors = false;
+            this.dgProductExist.Size = new System.Drawing.Size(627, 184);
+            this.dgProductExist.TabIndex = 640;
+            this.dgProductExist.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductExist_CellClick);
+            this.dgProductExist.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductExist_CellDoubleClick);
+            // 
+            // btnAcepted
+            // 
+            this.btnAcepted.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.btnAcepted.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.btnAcepted.IconColor = System.Drawing.Color.Blue;
+            this.btnAcepted.IconSize = 19;
+            this.btnAcepted.Location = new System.Drawing.Point(329, 238);
+            this.btnAcepted.Name = "btnAcepted";
+            this.btnAcepted.Rotation = 0D;
+            this.btnAcepted.Size = new System.Drawing.Size(76, 24);
+            this.btnAcepted.TabIndex = 663;
+            this.btnAcepted.Text = "Aceptar";
+            this.btnAcepted.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAcepted.UseVisualStyleBackColor = true;
+            this.btnAcepted.Click += new System.EventHandler(this.btnAcepted_Click);
+            // 
+            // panelSourseProducts
+            // 
+            this.panelSourseProducts.BackColor = System.Drawing.Color.White;
+            this.panelSourseProducts.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelSourseProducts.BackgroundImage")));
+            this.panelSourseProducts.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelSourseProducts.Controls.Add(this.btnAcepted);
+            this.panelSourseProducts.Controls.Add(this.dgProductExist);
+            this.panelSourseProducts.Location = new System.Drawing.Point(31, 33);
+            this.panelSourseProducts.Name = "panelSourseProducts";
+            this.panelSourseProducts.Size = new System.Drawing.Size(725, 279);
+            this.panelSourseProducts.TabIndex = 664;
+            this.panelSourseProducts.Visible = false;
+            // 
+            // textIva
+            // 
+            this.textIva.BackColor = System.Drawing.SystemColors.Control;
+            this.textIva.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textIva.Location = new System.Drawing.Point(519, 111);
+            this.textIva.Name = "textIva";
+            this.textIva.Size = new System.Drawing.Size(237, 13);
+            this.textIva.TabIndex = 666;
+            this.textIva.Tag = "";
+            this.textIva.TextChanged += new System.EventHandler(this.textIva_TextChanged);
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Gray;
+            this.panel6.Location = new System.Drawing.Point(519, 126);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(237, 1);
+            this.panel6.TabIndex = 668;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(438, 111);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(24, 13);
+            this.label8.TabIndex = 667;
+            this.label8.Text = "IVA";
+            // 
             // formProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(800, 354);
+            this.ClientSize = new System.Drawing.Size(791, 353);
             this.Controls.Add(this.panelSourseProducts);
+            this.Controls.Add(this.textIva);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.dtExpirationProduct);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnClean);
@@ -502,8 +569,8 @@
             this.Load += new System.EventHandler(this.formProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAllProduct)).EndInit();
-            this.panelSourseProducts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgProductExist)).EndInit();
+            this.panelSourseProducts.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -534,17 +601,21 @@
         private System.Windows.Forms.Panel panel5;
         internal System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.TextBox textCode;
         internal System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox ckbStatus;
         internal System.Windows.Forms.Label label9;
         private System.Windows.Forms.Timer TimeSumulate;
-        private System.Windows.Forms.Panel panelSourseProducts;
         private FontAwesome.Sharp.IconButton btnClean;
         private System.Windows.Forms.Panel panel1;
         internal System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtExpirationProduct;
+        private FontAwesome.Sharp.IconButton btnEdit;
         private System.Windows.Forms.DataGridView dgProductExist;
-        private FontAwesome.Sharp.IconButton btnAcept;
+        private FontAwesome.Sharp.IconButton btnAcepted;
+        private System.Windows.Forms.Panel panelSourseProducts;
+        private System.Windows.Forms.TextBox textIva;
+        private System.Windows.Forms.Panel panel6;
+        internal System.Windows.Forms.Label label8;
+        public System.Windows.Forms.TextBox textCode;
     }
 }

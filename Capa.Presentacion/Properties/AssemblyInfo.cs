@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("Capa.Presnetacion")]
+[assembly: AssemblyTitle("Sistema de Farmacia")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Capa.Presnetacion")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyProduct("Sistema de Farmacia")]
+[assembly: AssemblyCopyright("Copyright ©  2020 - Josvany Garcia")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
