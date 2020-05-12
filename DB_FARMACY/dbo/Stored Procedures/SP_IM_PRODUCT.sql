@@ -5,7 +5,9 @@
    @proCode VARCHAR(100),
    @proPriceSales DECIMAL(18,2),
    @proMinimalStock INT,
-   @proStatus bit
+   @proStatus bit,
+   @proIva int,
+   @presId UNIQUEIDENTIFIER
 	
 )
 AS
@@ -23,7 +25,9 @@ BEGIN
 					PRO_CODE,
 					PRO_PRICE_SALES,
 					PRO_MINIMAL_STOCK,
-					PRO_STATUS
+					PRO_STATUS,
+					PRO_IVA,
+					PRES_ID
 			   )
 			 VALUES
 			   (
@@ -33,16 +37,18 @@ BEGIN
 					@proCode,
 					@proPriceSales,
 					@proMinimalStock,
-					@proStatus
+					@proStatus,
+					ISNULL(@proIva, NULL),
+					ISNULL(@presId, NULL)
 			   )
 
 		END
         ELSE
 		   BEGIN
 			UPDATE TBL_PRODUCT
-				SET PRO_NAME = @proName, PRO_CODE = ISNULL(@catIntId, NULL),
+				SET PRO_NAME = @proName, PRO_CODE = @proCode,  CAT_INT_ID = ISNULL(@catIntId, NULL),
 					PRO_MINIMAL_STOCK=	@proMinimalStock, PRO_PRICE_SALES = @proPriceSales,
-					PRO_STATUS = @proStatus
+					PRO_STATUS = @proStatus, PRO_IVA = ISNULL(@proIva, NULL), PRES_ID = ISNULL(@presId, NULL)
 			  WHERE  PRO_INT_ID = @prodId
 
 		  END

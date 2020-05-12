@@ -8,14 +8,16 @@ using System.Drawing;
 
 namespace Capa.Presentacion
 {
-    public partial class formCategory : Form
+    public partial class formPresentation : Form
     {
-        private clsCategory _clsCategory = new clsCategory();
-        private UtilsRespository utilsRespository = new UtilsRespository();
+        UtilsRespository utilsRespository = new UtilsRespository();
+        clsPresentacion _clsPresentacion = new clsPresentacion();
         bool activateSearch = true;
-        Guid currentCategoryIntId = Guid.Empty;
         int count = 0;
-        public formCategory()
+        string auxName;
+        private bool isEdited = false;
+        Guid currentTypePre = Guid.Empty;
+        public formPresentation()
         {
             InitializeComponent();
             Conexion.IniciarSesion();
@@ -24,60 +26,34 @@ namespace Capa.Presentacion
             Search();
         }
 
-        private void formCategory_Load(object sender, EventArgs e)
+        private void formPresentation_Load(object sender, EventArgs e)
         {
 
         }
-        private void getAllCategory()
+
+        private void getTypePresentation()
         {
-            dgAllCategory.DataSource = utilsRespository.GetData("SP_GET_CATEGORY");
+            dgAllCategory.DataSource = utilsRespository.GetData("SP_GET_TYPE_PRESENTATION");
             if (dgAllCategory.Rows.Count > 0 || dgAllCategory != null)
             {
-                dgAllCategory.Columns["CAT_INT_ID"].Visible = false;
+                dgAllCategory.Columns["PRES_ID"].Visible = false;
+                dgAllCategory.ColumnHeadersVisible = false;
+                dgAllCategory.RowHeadersVisible = false;
             }
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            tm.Start();
-            Search();
-        }
-
-        private void tm_Tick(object sender, EventArgs e)
-        {
-            btnSearch.BackColor = SystemColors.Control;
-            count += 1;
-            if (count.Equals(3))
-            {
-                btnSearch.BackColor = SystemColors.ButtonHighlight;
-                tm.Stop();
-                tm.Dispose();
-                count = 0;
-            }
-        }
         private void disableEnableControls(bool activate)
         {
             clearControls();
-            textSystemName.ReadOnly = activate;
-            ckbStatus.Enabled = activate ? false : true;
             btnAdd.Enabled = activate ? false : true;
             btnCancel.Enabled = activate ? false : true;
-            if (activate)
-            {
-                textSystemName.BackColor = SystemColors.Control;
-            }
-            else
-            {
-                textSystemName.BackColor = Color.White;
-            }
             textNombre.BackColor = Color.White;
         }
         private void clearControls()
         {
             textNombre.Text = string.Empty;
-            textSystemName.Text = string.Empty;
-            ckbStatus.Checked = true;
         }
+
 
         private void Search()
         {
@@ -88,7 +64,7 @@ namespace Capa.Presentacion
                     if (!textNombre.Text.Equals(string.Empty, StringComparison.CurrentCultureIgnoreCase))
                     {
                         var resultSearch = from res in dataExist.AsEnumerable()
-                                           where res.Field<string>("Nombre").StartsWith(textNombre.Text)
+                                           where res.Field<string>("PRES_NAME").StartsWith(textNombre.Text)
                                            select res;
 
                         DataView view = resultSearch.AsDataView();
@@ -107,7 +83,7 @@ namespace Capa.Presentacion
                     {
                         if (textNombre.Text.Equals(string.Empty, StringComparison.CurrentCultureIgnoreCase))
                         {
-                            getAllCategory();
+                            getTypePresentation();
                         }
                     }
                 }
@@ -115,7 +91,7 @@ namespace Capa.Presentacion
                 {
                     if (textNombre.Text.Equals(string.Empty))
                     {
-                        getAllCategory();
+                        getTypePresentation();
                     }
                 }
             }
@@ -123,12 +99,26 @@ namespace Capa.Presentacion
 
         private void btnNew_Click(object sender, EventArgs e)
         {
+            isEdited = false;
             activateSearch = false;
             disableEnableControls(false);
             textNombre.Focus();
             if (dgAllCategory.Rows.Count.Equals(0))
             {
-                getAllCategory();
+                getTypePresentation();
+            }
+        }
+
+        private void tm_Tick(object sender, EventArgs e)
+        {
+            btnSearch.BackColor = SystemColors.Control;
+            count += 1;
+            if (count.Equals(3))
+            {
+                btnSearch.BackColor = SystemColors.ButtonHighlight;
+                tm.Stop();
+                tm.Dispose();
+                count = 0;
             }
         }
 
@@ -143,7 +133,7 @@ namespace Capa.Presentacion
                 disableEnableControls(true);
                 if (dgAllCategory.Rows.Count.Equals(0))
                 {
-                    getAllCategory();
+                    getTypePresentation();
                 }
             }
         }
@@ -152,52 +142,46 @@ namespace Capa.Presentacion
         {
             try
             {
-                if (textNombre.Text.Equals(string.Empty, StringComparison.CurrentCultureIgnoreCase)
-                    || textSystemName.Text.Equals(string.Empty, StringComparison.CurrentCultureIgnoreCase))
+                if (textNombre.Text.Equals(string.Empty, StringComparison.CurrentCultureIgnoreCase))
                 {
                     MessageBox.Show("Campos incompletos!!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
-                DataTable dataExist = dgAllCategory.DataSource as DataTable;
-
-                if (currentCategoryIntId.Equals(Guid.Empty))
+                if (isEdited)
                 {
-                    if (dataExist.Rows.Count > 0)
+                    if (!auxName.Equals(textNombre.Text))
                     {
-                        var isExist = dataExist.AsEnumerable().Where(x => x["Nombre"].ToString() == textNombre.Text || x["Código"].ToString() == textSystemName.Text).Select(x => x).FirstOrDefault();
-                        if (isExist != null)
-                        {
-                            MessageBox.Show("El categoria con nombre o código ya existe", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
+                        validationExists();
                     }
                 }
+                else
+                {
+                    validationExists();
+                }
 
-                if (currentCategoryIntId.Equals(Guid.Empty))
+                if (currentTypePre.Equals(Guid.Empty))
                 {
-                    _clsCategory.categoryIntId = Guid.NewGuid();
+                    _clsPresentacion.preId = Guid.NewGuid();
                 }
                 else
                 {
-                    _clsCategory.categoryIntId = currentCategoryIntId;
+                    _clsPresentacion.preId   = currentTypePre;
                 }
-                _clsCategory.categoryName = textNombre.Text;
-                _clsCategory.categoryCode = textSystemName.Text;
-                _clsCategory.categoryStatus = ckbStatus.Checked;
-                _clsCategory.saveData(_clsCategory);
-                
+                _clsPresentacion.preName = textNombre.Text.ToUpper();
+                _clsPresentacion.saveData(_clsPresentacion);
+
                 disableEnableControls(true);
-                getAllCategory();
-                if (currentCategoryIntId != Guid.Empty)
+                getTypePresentation();
+                if (currentTypePre != Guid.Empty)
                 {
-                    MessageBox.Show("Categoria actualizada correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Ingreso correcto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Categoria ingresada correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Actualización correcta", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                currentCategoryIntId = Guid.Empty;
+                currentTypePre = Guid.Empty;
                 activateSearch = true;
             }
             catch (Exception ex)
@@ -206,25 +190,45 @@ namespace Capa.Presentacion
             }
         }
 
-        private void dgAllCategory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void validationExists()
+        {
+            DataTable dataExist = dgAllCategory.DataSource as DataTable;
+
+            if (currentTypePre.Equals(Guid.Empty))
+            {
+                if (dataExist.Rows.Count > 0)
+                {
+                    var isExist = dataExist.AsEnumerable().Where(x => x["PRES_NAME"].ToString() == textNombre.Text).Select(x => x).FirstOrDefault();
+                    if (isExist != null)
+                    {
+                        MessageBox.Show("El categoria con nombre o código ya existe", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void dgAllCategory_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
+                isEdited = true;
+                activateSearch = false;
                 disableEnableControls(false);
                 int currentRow = dgAllCategory.CurrentRow.Index;
-                currentCategoryIntId = Guid.Parse(dgAllCategory.Rows[currentRow].Cells[0].EditedFormattedValue.ToString());
-                textNombre.Text = dgAllCategory.Rows[currentRow].Cells[1].EditedFormattedValue.ToString();
-                textSystemName.Text = dgAllCategory.Rows[currentRow].Cells[2].EditedFormattedValue.ToString();
-                ckbStatus.Checked = (bool)dgAllCategory.Rows[currentRow].Cells[3].EditedFormattedValue;
+                currentTypePre = Guid.Parse(dgAllCategory.Rows[currentRow].Cells["PRES_ID"].EditedFormattedValue.ToString());
+                textNombre.Text = dgAllCategory.Rows[currentRow].Cells["PRES_NAME"].EditedFormattedValue.ToString();
+                auxName = textNombre.Text;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void textNombre_TextChanged(object sender, EventArgs e)
         {
-            btnSearch_Click(null, null);
+            Search();
         }
     }
 }

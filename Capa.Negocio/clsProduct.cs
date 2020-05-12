@@ -11,6 +11,7 @@ namespace Capa.Datos.ORM
     {
         public Guid prodIntId { get; set; }
         public Guid? categoryIntId { get; set; }
+        public Guid? presId { get; set; }
         public string proName { get; set; }
         public string prodCode { get; set; }
         public decimal prodPriceBuy { get; set; }
@@ -26,6 +27,7 @@ namespace Capa.Datos.ORM
             try
             {
                 object valueCategories = new object();
+                object valueTypePresentation = new object();
                 if (clsProduct.categoryIntId == null)
                 {
                     valueCategories = DBNull.Value;
@@ -34,12 +36,22 @@ namespace Capa.Datos.ORM
                 {
                     valueCategories = clsProduct.categoryIntId;
                 }
+
+                if (clsProduct.presId == null)
+                {
+                    valueTypePresentation = DBNull.Value;
+                }
+                else
+                {
+                    valueTypePresentation = clsProduct.presId;
+                }
+
                 Conexion.GDatos.BeginTransaction();
 
                 Conexion.GDatos.Ejecutar("SP_IM_PRODUCT", clsProduct.prodIntId, valueCategories,
                                                           clsProduct.proName, clsProduct.prodCode,
                                                           clsProduct.prodPriceSales, clsProduct.proMinimalStock,
-                                                          clsProduct.proStatus, clsProduct.proIva);
+                                                          clsProduct.proStatus, clsProduct.proIva,clsProduct.presId);
 
 
                 Guid typKardex = Guid.Parse(new UtilsRespository().GetData("SP_GET_TYPE_KARDEX", "TYP_KAR_NAME", "TYP_KAR_ID", "Entrada").ToString());

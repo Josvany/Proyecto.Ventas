@@ -89,5 +89,14 @@
     <Build Include="dbo\Stored Procedures\SP_IM_KADEX.sql" />
     <Build Include="dbo\Stored Procedures\SP_GET_TYPE_KARDEX.sql" />
     <Build Include="dbo\Stored Procedures\GET_PRODUCT_KARDEX.sql" />
+    <Build Include="dbo\Tables\TBL_SAL_KARD_AFECTED.sql" />
+    <Build Include="dbo\Tables\TBL_PRESENTATION.sql" />
+    <Build Include="dbo\Stored Procedures\SP_IM_TYPE_PRESENTATION.sql" />
+    <Build Include="dbo\Stored Procedures\SP_IM_AGENCY_BOX.sql" />
+    <Build Include="dbo\Stored Procedures\SP_I_HIS_AGENCY_BOX.sql" />
+    <Build Include="dbo\Stored Procedures\SP_GET_TYPE_PRESENTATION.sql" />
+    <Build Include="dbo\Stored Procedures\SP_GET_HIS_AGENCY_BOX_BY_USER_ID.sql" />
+    <Build Include="dbo\Stored Procedures\SP_GET_HIS_AGENCY_BOX_BY_BOX_ID.sql" />
+    <Build Include="dbo\Stored Procedures\SP_GET_AGENCY_BOX.sql" />
   </ItemGroup>
 </Project>

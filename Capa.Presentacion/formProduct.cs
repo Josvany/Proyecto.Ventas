@@ -19,7 +19,6 @@ namespace Capa.Presentacion
         int currentRowKardex;
         private bool activateSearch = true;
         private bool isEdited = false;
-
         private string nameAux = string.Empty;
         private string codeAux = string.Empty;
 
@@ -35,7 +34,15 @@ namespace Capa.Presentacion
         {
             loadCatecories();
             loadAllProduct();
+            loadTypePresentation();
             typeKardex = Guid.Parse(utilsRespository.GetData("SP_GET_TYPE_KARDEX", "TYP_KAR_NAME", "TYP_KAR_ID", "Entrada").ToString());
+        }
+
+        private void loadTypePresentation()
+        {
+            cmbTypePresentation.DataSource = new BindingSource(utilsRespository.GetCombo("SP_GET_TYPE_PRESENTATION"), null);
+            cmbTypePresentation.DisplayMember = "key";
+            cmbTypePresentation.ValueMember = "Value";
         }
 
         private void loadCatecories()
@@ -61,6 +68,7 @@ namespace Capa.Presentacion
             dtExpirationProduct.Enabled = activate ? false : true;
             textMinimalStock.ReadOnly = activate;
             textIva.ReadOnly = activate;
+            cmbTypePresentation.Enabled = activate ? false : true;
             if (activate)
             {
                 textName.BackColor = SystemColors.Control;
@@ -70,6 +78,7 @@ namespace Capa.Presentacion
                 textPriceSales.BackColor = SystemColors.Control;
                 textMinimalStock.BackColor = SystemColors.Control;
                 textIva.BackColor = SystemColors.Control;
+                cmbTypePresentation.BackColor = SystemColors.Control;
             }
             else
             {
@@ -80,7 +89,7 @@ namespace Capa.Presentacion
                 textPriceBuy.BackColor = Color.White;
                 textMinimalStock.BackColor = Color.White;
                 textIva.BackColor = Color.White;
-
+                cmbTypePresentation.BackColor = Color.White;
             }
             textName.BackColor = Color.White;
             cmbCategories.BackColor = Color.White;
@@ -94,6 +103,7 @@ namespace Capa.Presentacion
             textCode.Text = string.Empty;
             textPriceSales.Text = string.Empty;
             textStock.Text = string.Empty;
+            textIva.Text = string.Empty;
             if (cmbCategories.Items.Count > 0)
             {
                 cmbCategories.SelectedIndex = 0;
@@ -162,6 +172,7 @@ namespace Capa.Presentacion
             {
                 dgAllProduct.Columns["PRO_INT_ID"].Visible = false;
                 dgAllProduct.Columns["CAT_INT_ID"].Visible = false;
+                dgAllProduct.Columns["PRES_NAME"].Visible = false;
                 dgAllProduct.Columns["PRO_PRICE_SALES"].HeaderText = "Precio de Venta";
                 dgAllProduct.Columns["PRO_MINIMAL_STOCK"].HeaderText = "Cantidad Minima";
             }
@@ -224,7 +235,7 @@ namespace Capa.Presentacion
 
                 if (isEdited)
                 {
-                    if (!textName.Text.Equals(nameAux) || textCode.Text.Equals(codeAux))
+                    if (!textName.Text.Equals(nameAux) || !textCode.Text.Equals(codeAux))
                     {
                         validateProduct();
                     }
@@ -259,7 +270,16 @@ namespace Capa.Presentacion
                     _clsProduct.categoryIntId = Guid.Parse(cmbCategories.SelectedValue.ToString());
                 }
 
-                _clsProduct.proStatus = true;
+                if (cmbTypePresentation.SelectedValue.ToString() == Guid.Empty.ToString())
+                {
+                    _clsProduct.presId = null;
+                }
+                else
+                {
+                    _clsProduct.presId = Guid.Parse(cmbTypePresentation.SelectedValue.ToString());
+                }
+
+                _clsProduct.proStatus = ckbStatus.Checked; ;
                 if (currenProductIntId == Guid.Empty)
                 {
                     _clsProduct.prodIntId = Guid.NewGuid();
@@ -270,10 +290,6 @@ namespace Capa.Presentacion
                     _clsProduct.prodIntId = currenProductIntId;
                     _clsProduct.SaveData(_clsProduct, currentProductKardex);
                 }
-
-                disableEnableControls(true);
-                loadAllProduct();
-
                 if (currenProductIntId != Guid.Empty)
                 {
                     MessageBox.Show("Producto actualizado con éxito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -282,7 +298,9 @@ namespace Capa.Presentacion
                 {
                     MessageBox.Show("Producto ingresado con éxito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                currenProductIntId = Guid.Empty;
+
+                disableEnableControls(true);
+                loadAllProduct();
                 activateSearch = true;
                 isEdited = false;
             }
@@ -326,6 +344,7 @@ namespace Capa.Presentacion
             try
             {
                 Guid catCurrentValue = Guid.Empty;
+                Guid typePresCurrentValue = Guid.Empty;
                 activateSearch = false;
                 isEdited = true;
                 disableEnableControls(false);
@@ -334,7 +353,10 @@ namespace Capa.Presentacion
                 textName.Text = dgAllProduct.Rows[currentRow].Cells["Nombre"].EditedFormattedValue.ToString();
                 textCode.Text = dgAllProduct.Rows[currentRow].Cells["Código"].EditedFormattedValue.ToString();
                 Guid.TryParse(dgAllProduct.Rows[currentRow].Cells["CAT_INT_ID"].EditedFormattedValue.ToString(), out catCurrentValue);
-                cmbCategories.SelectedIndex = GetIndexCat(catCurrentValue);
+                Guid.TryParse(dgAllProduct.Rows[currentRow].Cells["CAT_INT_ID"].EditedFormattedValue.ToString(), out typePresCurrentValue);
+                
+                cmbCategories.SelectedIndex = GetIndexCat(catCurrentValue, "SP_GET_CATEGORY", "CAT_INT_ID");
+
                 ckbStatus.Checked = (bool)dgAllProduct.Rows[currentRow].Cells["Estado"].EditedFormattedValue;
                 textPriceSales.Text = dgAllProduct.Rows[currentRow].Cells["PRO_PRICE_SALES"].EditedFormattedValue.ToString();
                 textMinimalStock.Text = dgAllProduct.Rows[currentRow].Cells["PRO_MINIMAL_STOCK"].EditedFormattedValue.ToString();
@@ -375,23 +397,22 @@ namespace Capa.Presentacion
             dtExpirationProduct.Value = Convert.ToDateTime(dgProductExist.Rows[currentRowKardex].Cells["KAR_EXPIRATION_DATE"].EditedFormattedValue.ToString());
             panelSourseProducts.Visible = false;
         }
-
-        private int GetIndexCat(Guid catIntId)
+        private int GetIndexCat(Guid valuesToFilter, string spName, string columToCompare)
         {
             int count = 0;
-            if (catIntId.Equals(Guid.Empty))
+            if (valuesToFilter.Equals(Guid.Empty))
             {
                 return 0;
             }
             else
             {
-                DataTable dt = utilsRespository.GetData("SP_GET_CATEGORY");
+                DataTable dt = utilsRespository.GetData(spName);
                 if (dt.Rows.Count > 0)
                 {
                     foreach (DataRow item in dt.Rows)
                     {
                         count += 1;
-                        if (item["CAT_INT_ID"].ToString().Equals(catIntId.ToString()))
+                        if (item[columToCompare].ToString().Equals(valuesToFilter.ToString()))
                         {
                             break;
                         }
@@ -402,7 +423,6 @@ namespace Capa.Presentacion
                     return 0;
                 }
             }
-
             return count;
         }
 
@@ -465,7 +485,6 @@ namespace Capa.Presentacion
                 MessageBox.Show("fdas");
             }
         }
-
         private void textCode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

@@ -69,6 +69,8 @@
             this.textIva = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
+            this.cmbTypePresentation = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAllProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductExist)).BeginInit();
@@ -128,7 +130,7 @@
             this.btnCancel.IconChar = FontAwesome.Sharp.IconChar.Ban;
             this.btnCancel.IconColor = System.Drawing.Color.Red;
             this.btnCancel.IconSize = 19;
-            this.btnCancel.Location = new System.Drawing.Point(373, 318);
+            this.btnCancel.Location = new System.Drawing.Point(387, 370);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Rotation = 0D;
             this.btnCancel.Size = new System.Drawing.Size(76, 24);
@@ -144,7 +146,7 @@
             this.btnNew.IconChar = FontAwesome.Sharp.IconChar.Plus;
             this.btnNew.IconColor = System.Drawing.Color.Green;
             this.btnNew.IconSize = 20;
-            this.btnNew.Location = new System.Drawing.Point(209, 318);
+            this.btnNew.Location = new System.Drawing.Point(223, 370);
             this.btnNew.Name = "btnNew";
             this.btnNew.Rotation = 0D;
             this.btnNew.Size = new System.Drawing.Size(76, 24);
@@ -160,7 +162,7 @@
             this.btnAdd.IconChar = FontAwesome.Sharp.IconChar.Save;
             this.btnAdd.IconColor = System.Drawing.Color.Blue;
             this.btnAdd.IconSize = 20;
-            this.btnAdd.Location = new System.Drawing.Point(291, 318);
+            this.btnAdd.Location = new System.Drawing.Point(305, 370);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Rotation = 0D;
             this.btnAdd.Size = new System.Drawing.Size(76, 24);
@@ -174,7 +176,7 @@
             // 
             this.dgAllProduct.AllowUserToAddRows = false;
             this.dgAllProduct.AllowUserToOrderColumns = true;
-            this.dgAllProduct.Location = new System.Drawing.Point(70, 155);
+            this.dgAllProduct.Location = new System.Drawing.Point(84, 207);
             this.dgAllProduct.MultiSelect = false;
             this.dgAllProduct.Name = "dgAllProduct";
             this.dgAllProduct.ReadOnly = true;
@@ -386,7 +388,7 @@
             this.btnClean.IconChar = FontAwesome.Sharp.IconChar.Brush;
             this.btnClean.IconColor = System.Drawing.Color.Black;
             this.btnClean.IconSize = 19;
-            this.btnClean.Location = new System.Drawing.Point(537, 318);
+            this.btnClean.Location = new System.Drawing.Point(551, 370);
             this.btnClean.Name = "btnClean";
             this.btnClean.Rotation = 0D;
             this.btnClean.Size = new System.Drawing.Size(76, 24);
@@ -434,7 +436,7 @@
             this.btnEdit.IconChar = FontAwesome.Sharp.IconChar.Pen;
             this.btnEdit.IconColor = System.Drawing.Color.DarkGreen;
             this.btnEdit.IconSize = 19;
-            this.btnEdit.Location = new System.Drawing.Point(455, 318);
+            this.btnEdit.Location = new System.Drawing.Point(469, 370);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Rotation = 0D;
             this.btnEdit.Size = new System.Drawing.Size(76, 24);
@@ -484,9 +486,9 @@
             this.panelSourseProducts.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelSourseProducts.Controls.Add(this.btnAcepted);
             this.panelSourseProducts.Controls.Add(this.dgProductExist);
-            this.panelSourseProducts.Location = new System.Drawing.Point(31, 33);
+            this.panelSourseProducts.Location = new System.Drawing.Point(20, 12);
             this.panelSourseProducts.Name = "panelSourseProducts";
-            this.panelSourseProducts.Size = new System.Drawing.Size(725, 279);
+            this.panelSourseProducts.Size = new System.Drawing.Size(740, 352);
             this.panelSourseProducts.TabIndex = 664;
             this.panelSourseProducts.Visible = false;
             // 
@@ -520,13 +522,35 @@
             this.label8.TabIndex = 667;
             this.label8.Text = "IVA";
             // 
+            // cmbTypePresentation
+            // 
+            this.cmbTypePresentation.BackColor = System.Drawing.SystemColors.Control;
+            this.cmbTypePresentation.FormattingEnabled = true;
+            this.cmbTypePresentation.Location = new System.Drawing.Point(155, 155);
+            this.cmbTypePresentation.Name = "cmbTypePresentation";
+            this.cmbTypePresentation.Size = new System.Drawing.Size(237, 21);
+            this.cmbTypePresentation.TabIndex = 669;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(36, 163);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(69, 13);
+            this.label10.TabIndex = 670;
+            this.label10.Text = "Presentacion";
+            // 
             // formProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(791, 353);
+            this.ClientSize = new System.Drawing.Size(791, 401);
             this.Controls.Add(this.panelSourseProducts);
+            this.Controls.Add(this.cmbTypePresentation);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.textIva);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.label8);
@@ -617,5 +641,7 @@
         private System.Windows.Forms.Panel panel6;
         internal System.Windows.Forms.Label label8;
         public System.Windows.Forms.TextBox textCode;
+        private System.Windows.Forms.ComboBox cmbTypePresentation;
+        internal System.Windows.Forms.Label label10;
     }
 }

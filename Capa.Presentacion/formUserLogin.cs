@@ -42,9 +42,17 @@ namespace Capa.Presentacion
 
         private void buttonlogin_Click(object sender, EventArgs e)
         {
+            if (textUser.Text.Equals("Usuario"))
+            {
+                textUser.Text = string.Empty;
+                textUser.Focus();
+                textPasword.Text = string.Empty;
+                return;
+            }
+
             DataTable dtAllUser = _utilRespo.GetData("SP_GET_USER");
 
-            var isExist = dtAllUser.AsEnumerable().Where(x => x["Usuario"].ToString() == textUser.Text && x["Contraseña"].ToString() == _encriptacion.Encriptar(textpassword.Text)).Select(x => x).FirstOrDefault();
+            var isExist = dtAllUser.AsEnumerable().Where(x => x["Usuario"].ToString() == textUser.Text && x["Contraseña"].ToString() == _encriptacion.Encriptar(textPasword.Text)).Select(x => x).FirstOrDefault();
 
             if (isExist != null)
             {
@@ -56,7 +64,7 @@ namespace Capa.Presentacion
             }
             else
             {
-                MessageBox.Show("Usuario no encontrado","Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Usuario no encontrado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -66,10 +74,37 @@ namespace Capa.Presentacion
             Application.Exit();
         }
 
-        private void textpassword_KeyPress(object sender, KeyPressEventArgs e)
+        private void textUser_Click(object sender, EventArgs e)
+        {
+            if (textUser.Text.Equals("Usuario"))
+            {
+                textUser.Text = string.Empty;
+            }
+        }
+
+        private void textPasword_Click(object sender, EventArgs e)
+        {
+            textPasword.Text = string.Empty;
+            textPasword.isPassword = true;
+        }
+
+        private void textPasword_OnValueChanged(object sender, EventArgs e)
+        {
+            textPasword.ForeColor = Color.White;
+            textPasword.isPassword = true;
+        }
+
+        private void textPasword_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
+
+                if (textPasword.Text == "Contraseña")
+                {
+                    textPasword.Focus();
+                    return;
+                }
+
                 buttonlogin_Click(null, null);
             }
         }
