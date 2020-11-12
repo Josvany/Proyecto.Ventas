@@ -32,7 +32,7 @@
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnExist = new FontAwesome.Sharp.IconButton();
             this.panelSubAjust = new System.Windows.Forms.Panel();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
+            this.btnTypePresentation = new FontAwesome.Sharp.IconButton();
             this.btnOpenAgencyBox = new FontAwesome.Sharp.IconButton();
             this.bntCash = new FontAwesome.Sharp.IconButton();
             this.btnUsers = new FontAwesome.Sharp.IconButton();
@@ -113,7 +113,7 @@
             // panelSubAjust
             // 
             this.panelSubAjust.AutoSize = true;
-            this.panelSubAjust.Controls.Add(this.iconButton3);
+            this.panelSubAjust.Controls.Add(this.btnTypePresentation);
             this.panelSubAjust.Controls.Add(this.btnOpenAgencyBox);
             this.panelSubAjust.Controls.Add(this.bntCash);
             this.panelSubAjust.Controls.Add(this.btnUsers);
@@ -123,28 +123,29 @@
             this.panelSubAjust.Size = new System.Drawing.Size(226, 160);
             this.panelSubAjust.TabIndex = 6;
             // 
-            // iconButton3
+            // btnTypePresentation
             // 
-            this.iconButton3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton3.FlatAppearance.BorderSize = 0;
-            this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton3.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.iconButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton3.ForeColor = System.Drawing.Color.Black;
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.ClipboardList;
-            this.iconButton3.IconColor = System.Drawing.Color.DodgerBlue;
-            this.iconButton3.IconSize = 32;
-            this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.Location = new System.Drawing.Point(0, 120);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
-            this.iconButton3.Rotation = 0D;
-            this.iconButton3.Size = new System.Drawing.Size(226, 40);
-            this.iconButton3.TabIndex = 5;
-            this.iconButton3.Text = "Presentaciones";
-            this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton3.UseVisualStyleBackColor = true;
+            this.btnTypePresentation.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTypePresentation.FlatAppearance.BorderSize = 0;
+            this.btnTypePresentation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTypePresentation.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.btnTypePresentation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTypePresentation.ForeColor = System.Drawing.Color.Black;
+            this.btnTypePresentation.IconChar = FontAwesome.Sharp.IconChar.ClipboardList;
+            this.btnTypePresentation.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btnTypePresentation.IconSize = 32;
+            this.btnTypePresentation.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTypePresentation.Location = new System.Drawing.Point(0, 120);
+            this.btnTypePresentation.Name = "btnTypePresentation";
+            this.btnTypePresentation.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
+            this.btnTypePresentation.Rotation = 0D;
+            this.btnTypePresentation.Size = new System.Drawing.Size(226, 40);
+            this.btnTypePresentation.TabIndex = 5;
+            this.btnTypePresentation.Text = "Presentaciones";
+            this.btnTypePresentation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTypePresentation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTypePresentation.UseVisualStyleBackColor = true;
+            this.btnTypePresentation.Click += new System.EventHandler(this.btnTypePresentation_Click);
             // 
             // btnOpenAgencyBox
             // 
@@ -479,6 +480,7 @@
             this.btnSales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSales.UseVisualStyleBackColor = true;
+            this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
             // 
             // btnOpenGeneral
             // 
@@ -533,7 +535,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(243, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(681, 34);
+            this.panel1.Size = new System.Drawing.Size(681, 70);
             this.panel1.TabIndex = 1;
             // 
             // btnMinimizar
@@ -582,9 +584,9 @@
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDesktop.Location = new System.Drawing.Point(243, 34);
+            this.panelDesktop.Location = new System.Drawing.Point(243, 70);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(681, 508);
+            this.panelDesktop.Size = new System.Drawing.Size(681, 472);
             this.panelDesktop.TabIndex = 2;
             // 
             // MasterContain
@@ -640,7 +642,7 @@
         private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconButton btnCategory;
         private FontAwesome.Sharp.IconButton btnExist;
-        private FontAwesome.Sharp.IconButton iconButton3;
+        private FontAwesome.Sharp.IconButton btnTypePresentation;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox btnMinimizar;
         private System.Windows.Forms.PictureBox btnMaximizar;

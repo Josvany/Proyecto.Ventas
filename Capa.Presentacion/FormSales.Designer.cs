@@ -46,7 +46,7 @@
             this.textTotal = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textInvNumber = new System.Windows.Forms.TextBox();
             this.buttonClear = new FontAwesome.Sharp.IconButton();
             this.buttonAddProduct = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
@@ -63,6 +63,7 @@
             this.EL = new System.Windows.Forms.DataGridViewImageColumn();
             this.S = new System.Windows.Forms.DataGridViewButtonColumn();
             this.R = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.cmbTypePayment = new System.Windows.Forms.ComboBox();
             this.PanelSarch.SuspendLayout();
             this.PanelInformation.SuspendLayout();
             this.PaneProduct.SuspendLayout();
@@ -118,13 +119,14 @@
             // 
             // PanelInformation
             // 
+            this.PanelInformation.Controls.Add(this.cmbTypePayment);
             this.PanelInformation.Controls.Add(this.buttonProcess);
             this.PanelInformation.Controls.Add(this.label2);
             this.PanelInformation.Controls.Add(this.panel5);
             this.PanelInformation.Controls.Add(this.textTotal);
             this.PanelInformation.Controls.Add(this.label3);
             this.PanelInformation.Controls.Add(this.panel6);
-            this.PanelInformation.Controls.Add(this.textBox4);
+            this.PanelInformation.Controls.Add(this.textInvNumber);
             this.PanelInformation.Controls.Add(this.buttonClear);
             this.PanelInformation.Controls.Add(this.buttonAddProduct);
             this.PanelInformation.Controls.Add(this.label1);
@@ -148,7 +150,7 @@
             this.buttonProcess.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.buttonProcess.IconColor = System.Drawing.Color.Green;
             this.buttonProcess.IconSize = 20;
-            this.buttonProcess.Location = new System.Drawing.Point(62, 336);
+            this.buttonProcess.Location = new System.Drawing.Point(52, 387);
             this.buttonProcess.Name = "buttonProcess";
             this.buttonProcess.Padding = new System.Windows.Forms.Padding(5, 3, 0, 0);
             this.buttonProcess.Rotation = 0D;
@@ -158,6 +160,7 @@
             this.buttonProcess.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.buttonProcess.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonProcess.UseVisualStyleBackColor = true;
+            this.buttonProcess.Click += new System.EventHandler(this.buttonProcess_Click);
             // 
             // label2
             // 
@@ -202,15 +205,16 @@
             this.panel6.Size = new System.Drawing.Size(224, 1);
             this.panel6.TabIndex = 631;
             // 
-            // textBox4
+            // textInvNumber
             // 
-            this.textBox4.BackColor = System.Drawing.Color.White;
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Location = new System.Drawing.Point(0, 223);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(224, 19);
-            this.textBox4.TabIndex = 630;
+            this.textInvNumber.BackColor = System.Drawing.Color.White;
+            this.textInvNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textInvNumber.Location = new System.Drawing.Point(0, 223);
+            this.textInvNumber.Name = "textInvNumber";
+            this.textInvNumber.ReadOnly = true;
+            this.textInvNumber.Size = new System.Drawing.Size(224, 19);
+            this.textInvNumber.TabIndex = 630;
+            this.textInvNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // buttonClear
             // 
@@ -463,6 +467,15 @@
             this.R.UseColumnTextForButtonValue = true;
             this.R.Width = 30;
             // 
+            // cmbTypePayment
+            // 
+            this.cmbTypePayment.BackColor = System.Drawing.Color.White;
+            this.cmbTypePayment.FormattingEnabled = true;
+            this.cmbTypePayment.Location = new System.Drawing.Point(3, 331);
+            this.cmbTypePayment.Name = "cmbTypePayment";
+            this.cmbTypePayment.Size = new System.Drawing.Size(221, 28);
+            this.cmbTypePayment.TabIndex = 637;
+            // 
             // FormSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -512,7 +525,7 @@
         private System.Windows.Forms.TextBox textTotal;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textInvNumber;
         private System.Windows.Forms.Panel panelSourseProducts;
         private System.Windows.Forms.DataGridView dgallProduct;
         internal System.Windows.Forms.DataGridView dtListProductToSales;
@@ -520,5 +533,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn S;
         private System.Windows.Forms.DataGridViewButtonColumn R;
         private FontAwesome.Sharp.IconButton buttonProcess;
+        private System.Windows.Forms.ComboBox cmbTypePayment;
     }
 }

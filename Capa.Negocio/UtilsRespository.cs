@@ -19,7 +19,6 @@ namespace Capa.Datos.ORM
         {
             return Conexion.GDatos.TraerDataTable(procedureName);
         }
-
         public object GetData(string procedureName, string columnameFilterValue, string columReturnValue, object valueToFilter)
         {
             DataTable dtGetData = new DataTable();
@@ -33,10 +32,8 @@ namespace Capa.Datos.ORM
                     valueReturn = dtGetData.AsEnumerable().Where(x => object.Equals(x[columnameFilterValue], valueToFilter.ToString())).Select(x => x[columReturnValue]).SingleOrDefault();
                 }
             }
-
             return valueReturn;
         }
-
         public Dictionary<string, Guid> GetCombo(string procedureName)
         {
             Dictionary<string, Guid> valueReturn = new Dictionary<string, Guid>

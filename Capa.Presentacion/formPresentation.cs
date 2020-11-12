@@ -45,8 +45,8 @@ namespace Capa.Presentacion
         private void disableEnableControls(bool activate)
         {
             clearControls();
-            btnAdd.Enabled = activate ? false : true;
-            btnCancel.Enabled = activate ? false : true;
+            btnAdd.Enabled = !activate;
+            btnCancel.Enabled = !activate;
             textNombre.BackColor = Color.White;
         }
         private void clearControls()

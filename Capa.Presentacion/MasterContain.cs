@@ -139,7 +139,6 @@ namespace Capa.Presentacion
                 activateButton(sender, Color.Transparent);
             }
         }
-
         private void btnAjust_Click(object sender, EventArgs e)
         {
             if (showSubMenu(panelSubAjust))
@@ -196,6 +195,15 @@ namespace Capa.Presentacion
         private void btnOpenAgencyBox_Click(object sender, EventArgs e)
         {
             OpenForm<formOpenBox>();
+        }
+
+        private void btnSales_Click(object sender, EventArgs e)
+        {
+            OpenForm<FormSales>();
+        }
+        private void btnTypePresentation_Click(object sender, EventArgs e)
+        {
+            OpenForm<formPresentation>();
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Capa.Presentacion
     public partial class FormSales : Form
     {
         UtilsRespository utilsRespository = new UtilsRespository();
+        clsProduct _clsProduct = new clsProduct();
         DataTable dtSearchProduct = new DataTable();
         Guid currentProductSelected = Guid.Empty;
         Guid currentProductSelectedEdit = Guid.Empty;
@@ -35,9 +36,26 @@ namespace Capa.Presentacion
             loadAllProduct();
             //panelSourseProducts.Visible = true;
             BindingGridsales(createSchemaDtSales());
+            getInvNumber();
+            loadTypePayment();
         }
 
+        private void loadTypePayment()
+        {
+            cmbTypePayment.DataSource = new BindingSource(utilsRespository.GetCombo("GET_TYPE_PAYMENT"), null);
+            cmbTypePayment.DisplayMember = "key";
+            cmbTypePayment.ValueMember = "Value";
+        }
 
+        private void getInvNumber()
+        {
+            DataTable dtInv = utilsRespository.GetData("GET_INVOCE");
+
+            var numberFac = dtInv.AsEnumerable().Select(x => x["INV_NUMBER"]).DefaultIfEmpty(0).Max(x => Convert.ToInt32(x));
+
+            textInvNumber.Text = Convert.ToString(numberFac + 1).PadLeft(10, '0');
+
+        }
         private void loadAllProduct()
         {
             DataTable dt = utilsRespository.GetData("GET_PRODUCT");
@@ -251,6 +269,7 @@ namespace Capa.Presentacion
             if (currentProductSelected != Guid.Empty)
             {
                 panelSourseProducts.Visible = false;
+                //textSearch.Text = string.Empty;
             }
         }
 
@@ -271,6 +290,25 @@ namespace Capa.Presentacion
         private void btnSearch_Click(object sender, EventArgs e)
         {
             SearchProduct();
+        }
+
+        private void buttonProcess_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dtProductToSale = dtListProductToSales.DataSource as DataTable;
+
+                _clsProduct.processSales(dtProductToSale, textInvNumber.Text,
+                    decimal.Parse(textTotal.Text), Program.UserIntId, Guid.Parse(cmbTypePayment.SelectedValue.ToString()));
+
+                clearControls();
+                MessageBox.Show("Proceso exitoso", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void textCantidad_KeyPress(object sender, KeyPressEventArgs e)

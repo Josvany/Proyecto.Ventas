@@ -434,7 +434,14 @@ namespace Capa.Presentacion
         private void btnEdit_Click(object sender, EventArgs e)
         {
             DataTable dtKardexProduct = _clsProduct.GetData("GET_PRODUCT_KARDEX", currenProductIntId, typeKardex);
+
+
             dgProductExist.DataSource = dtKardexProduct;
+
+            if (dgProductExist.Rows.Count > 0)
+            {
+                dgProductExist.Columns["KAR_ID"].Visible = false;
+            }
 
             panelSourseProducts.Visible = true;
             btnClean.Visible = true;
